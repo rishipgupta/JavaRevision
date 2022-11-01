@@ -7,6 +7,7 @@ public class Student {
     //The entry point of a standalone Java application is the main method or function.
     public static void main(String[] args) {
         Student s1 = new Student();//Object Creation from Class Student
+        //s1 is the identity of our object created;
         //Now our s1 can access id and name from Student class;
     }
 }
