@@ -34,6 +34,16 @@ public class StaticKeywordExample {
         return sellingPrice-costPrice;
     }
 
+    //-----------------------------------------------------------------------------
+    //Static Methods
+    String dogName = "tuffy";
+    static int dogAge = 7;
+    static void printNonStaticObjec(String name){
+        //accessing non static variable indirectly through object in Driver code file.
+        System.out.println(name);
+        //accessing static variables directly
+        System.out.println(dogAge);
+    }
 }
 
 

@@ -21,5 +21,8 @@ public class Main {
         //cost price changes at class level and thus in all objects as well
         // so on colling method through first object we get updated result
         s1.calculateProfit();
+
+        //accessing non-static variable in static method with the help of object
+        StaticKeywordExample.printNonStaticObjec(s2.dogName);
     }
 }
