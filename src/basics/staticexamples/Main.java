@@ -18,6 +18,8 @@ public class Main {
         StaticKeywordExample s2 = new StaticKeywordExample();
         System.out.println("Profit after changing initial value of cost price");
         s2.costPrice = 50;
+        //cost price changes at class level and thus in all objects as well
+        // so on colling method through first object we get updated result
         s1.calculateProfit();
     }
 }
