@@ -1,6 +1,10 @@
 package basics.staticexamples;
 
 public class Main {
+
+    static class NestedInsideMain{
+        int number = 10;
+    }
     public static void main(String[] args) {
         //accessing static variables using class
         //We need not create any object for that
@@ -24,5 +28,11 @@ public class Main {
 
         //accessing non-static variable in static method with the help of object
         StaticKeywordExample.printNonStaticObjec(s2.dogName);
+
+        //Two ways to create object of nested static class;
+        NestedClass.InnerClass i = new NestedClass.InnerClass();
+        NestedInsideMain n = new NestedInsideMain();
+        System.out.println(n.number);
+
     }
 }

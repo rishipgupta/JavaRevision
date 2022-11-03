@@ -44,6 +44,7 @@ public class StaticKeywordExample {
         //accessing static variables directly
         System.out.println(dogAge);
     }
+
 }
 
 
