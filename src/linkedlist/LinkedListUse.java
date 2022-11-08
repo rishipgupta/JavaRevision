@@ -1,20 +1,22 @@
 package linkedlist;
 
+import java.util.ArrayList;
+
 public class LinkedListUse {
 
     //Following function takes head of ll as a reference and returns head of ll
     public static Node<Integer> createLinkedList() {
         Node<Integer> n1 = new Node<>(10);
-        Node<Integer> n2 = new Node<>(30);
-        Node<Integer> n3 = new Node<>(31);
-        Node<Integer> n4 = new Node<>(50);
-        Node<Integer> n5 = new Node<>(80);
-        Node<Integer> n6 = new Node<>(82);
+        Node<Integer> n2 = new Node<>(20);
+        Node<Integer> n3 = new Node<>(30);
+        Node<Integer> n4 = new Node<>(20);
+        Node<Integer> n5 = new Node<>(10);
+//        Node<Integer> n6 = new Node<>(10);
         n1.next = n2;
         n2.next = n3;
         n3.next = n4;
         n4.next = n5;
-        n5.next = n6;
+//        n5.next = n6;
         return n1;
     }
 
@@ -58,14 +60,15 @@ public class LinkedListUse {
         }
     }
 
-    public static void length(Node<Integer> head) {
+    public static int length(Node<Integer> head) {
         int count = 0;
         Node<Integer> temp = head;
         while (temp != null) {
             count++;
             temp = temp.next;
         }
-        System.out.println(count);
+//        System.out.println(count);
+        return count;
     }
 
     public static Node<Integer> insert(Node<Integer> head, int pos, int data) {
@@ -154,6 +157,41 @@ public class LinkedListUse {
         return head;
     }
 
+    public static void printReverseWithRecurssion(Node<Integer> head) {
+        Node<Integer> root = head;
+        if (root == null) {
+            return;
+        }
+        printReverseWithRecurssion(root.next);
+        System.out.print(root.data + " ");
+    }
+
+    public static boolean isPalindrome(Node<Integer> head) {
+        boolean isPal = false;
+        ArrayList<Integer> arr = new ArrayList<>();
+        int count = length(head);
+        if (count == 0) {
+            return true;
+        }
+        Node<Integer> temp = head;
+        for (int i = 0; i < count / 2; i++) {
+            arr.add(temp.data);
+            temp = temp.next;
+        }
+        if (count % 2 != 0) {
+            temp = temp.next;
+        }
+        for (int j = arr.size() - 1; j >= 0; j--) {
+            if (arr.get(j) == temp.data) {
+                isPal = true;
+                temp = temp.next;
+            } else {
+                return false;
+            }
+        }
+        return isPal;
+    }
+
     public static void main(String[] args) {
         //Creating head of linked list
         Node<Integer> head = createLinkedList();
@@ -167,8 +205,10 @@ public class LinkedListUse {
 //        int index = findNode(head,310);
 //        print(head);
 //        head = appendLastNToFirst(head,5);
-        head = removeDuplicates(head);
-        print(head);
+//        head = removeDuplicates(head);
+//        print(head);
+//        printReverseWithRecurssion(head);
+        System.out.println(isPalindrome(head));
 
 //        System.out.println();
 //        length(head);
