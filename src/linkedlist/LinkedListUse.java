@@ -9,8 +9,8 @@ public class LinkedListUse {
         Node<Integer> n1 = new Node<>(10);
         Node<Integer> n2 = new Node<>(20);
         Node<Integer> n3 = new Node<>(30);
-        Node<Integer> n4 = new Node<>(20);
-        Node<Integer> n5 = new Node<>(10);
+        Node<Integer> n4 = new Node<>(40);
+        Node<Integer> n5 = new Node<>(50);
 //        Node<Integer> n6 = new Node<>(10);
         n1.next = n2;
         n2.next = n3;
@@ -192,6 +192,100 @@ public class LinkedListUse {
         return isPal;
     }
 
+    public static void printR(Node<Integer> head) {
+        if (head == null) {
+            return;
+        }
+        //To print in same order place print statement above recursion call
+        System.out.print(head.data + " ");
+//        head = head.next;
+        printR(head.next);
+        //To print in reverse order place print statement below recursion call
+        System.out.print(head.data + " ");
+    }
+
+    public static Node<Integer> insertRecursively(Node<Integer> head, int pos, int val) {
+        //For pos values greater than length of list
+        if (head == null && pos > 0) {
+            return head;
+        }
+        //For inserting at starting position
+        if (pos == 0) {
+            Node<Integer> newNode = new Node<>(val);
+            newNode.next = head;
+            head = newNode;
+            return head;
+        } else {
+            pos = pos - 1;
+            Node<Integer> h = insertRecursively(head.next, pos, val);
+            head.next = h;
+            return head;
+        }
+//            head = h;
+    }
+
+    public static Node<Integer> deleteRecursively(Node<Integer> head, int pos) {
+        if (head == null) {
+            return head;
+        }
+        if (pos == 0) {
+            head = head.next;
+            return head;
+        }
+        Node<Integer> h = deleteRecursively(head.next, pos - 1);
+        head.next = h;
+        return head;
+    }
+
+    public static Node<Integer> reverseLinkedList(Node<Integer> head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        Node<Integer> n = reverseLinkedList(head.next);
+        Node<Integer> tail = n;
+        while(tail.next != null){
+            tail = tail.next;
+        }
+        tail.next = head;
+        head.next = null;
+        head = n;
+        return head;
+    }
+
+    public static DoubleNode reverseLinkedListWithObject(Node<Integer>head){
+        DoubleNode ans;
+        if(head == null || head.next == null){
+            ans = new DoubleNode();
+            ans.head = head;
+            ans.tail = head;
+            return ans;
+        }
+        DoubleNode ansSmall = reverseLinkedListWithObject(head.next);
+        ansSmall.tail.next = head;
+        head.next = null;
+        ans = new DoubleNode();
+        ans.head = ansSmall.head;
+        ans.tail = head;
+        return ans;
+    }
+
+    public static Node<Integer> getHead(Node<Integer>head){
+        DoubleNode ans = reverseLinkedListWithObject(head);
+        return ans.head;
+    }
+
+    public static Node<Integer>reverseRecursivelyLinkedListBest(Node<Integer>head){
+        if(head ==null || head.next == null){
+            return head;
+        }
+        Node<Integer> h = reverseRecursivelyLinkedListBest(head.next);
+        Node<Integer> t = head.next;
+        t.next = head;
+        head.next = null;
+        return h;
+    }
+
     public static void main(String[] args) {
         //Creating head of linked list
         Node<Integer> head = createLinkedList();
@@ -208,10 +302,20 @@ public class LinkedListUse {
 //        head = removeDuplicates(head);
 //        print(head);
 //        printReverseWithRecurssion(head);
-        System.out.println(isPalindrome(head));
-
+//        System.out.println(isPalindrome(head));
+//        printR(head);
 //        System.out.println();
 //        length(head);
 //        printIthNode(head,3);
+//        head = insertRecursively(head, 2, 190);
+//        head = insertRecursively(head, 6, 111);
+//        print(head);
+//        head = deleteRecursively(head,6);
+//        head = reverseLinkedList(head);
+//        DoubleNode ans = reverseLinkedListWithObject(head);
+//        head = getHead(head);
+        head = reverseRecursivelyLinkedListBest(head);
+        print(head);
+
     }
 }
